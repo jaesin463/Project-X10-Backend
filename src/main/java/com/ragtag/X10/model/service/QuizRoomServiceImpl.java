@@ -23,15 +23,14 @@ public class QuizRoomServiceImpl implements QuizRoomService {
     @Override
     public int createRoom(QuizRoom quizRoom) {
         int result = quizRoomDao.insertQuizRoom(quizRoom);
+        UserQuizRoom userQuizRoom = new UserQuizRoom();
 
         if (result > 0) {
-            UserQuizRoom userQuizRoom = new UserQuizRoom();
             userQuizRoom.setQuizRoomId(quizRoom.getQuizRoomId());
             userQuizRoom.setUserId(quizRoom.getQuizRoomCreator());
-            result = quizRoomDao.insertUserQuizRoom(userQuizRoom);
+            quizRoomDao.insertUserQuizRoom(userQuizRoom);
         }
-
-        return result;
+        return userQuizRoom.getQuizRoomId();
     }
 
     @Override
