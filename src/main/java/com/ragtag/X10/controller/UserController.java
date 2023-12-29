@@ -118,7 +118,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/updateProfile/{userId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateInfo(@PathVariable("userId") String userId, @RequestPart(name="file", required = false) MultipartFile file) {
+    public ResponseEntity<?> updateInfo(@PathVariable("userId") String userId, @RequestPart(name="userImg", required = false) MultipartFile file) {
         try {
             User user = userService.userInfo(userId);
             System.out.println(file.getOriginalFilename());
