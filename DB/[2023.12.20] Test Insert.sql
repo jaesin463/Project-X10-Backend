@@ -70,20 +70,3 @@ INSERT INTO `X10`.`MultipleChoice` (`multipleChoiceId`, `questionId`, `choiceCon
 (3, 7, '4', 0),
 (4, 7, '3', 0),
 (5, 7, '2', 0);
-
-
-select * from user;
-
-select * from groupmember;
-
-SELECT * FROM `Group`;
-
-select * from subject;
-
-select * from workbook;
-
-select * from question;
-
-select * from  UserQuestionRecord;
-
-
