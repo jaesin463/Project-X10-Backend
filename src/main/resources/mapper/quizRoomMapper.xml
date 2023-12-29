@@ -5,8 +5,8 @@
 <mapper namespace="com.ragtag.X10.model.dao.QuizRoomDao">
     <!-- 퀴즈방 생성-->
     <insert id="insertQuizRoom" parameterType="QuizRoom" useGeneratedKeys="true" keyProperty="quizRoomId">
-        Insert Into quizRoom (groupId, quizRoomTitle, quizRoomWorkbookId, quizRoomTimeLimit, quizRoomCreator)
-        VALUES (#{groupId}, #{quizRoomTitle}, #{quizRoomWorkbookId}, #{quizRoomTimeLimit}, #{quizRoomCreator});
+        Insert Into quizRoom (groupId, quizRoomTitle, quizRoomWorkbookId, quizRoomTimeLimit, quizRoomCreator, quizRoomMaxNum)
+        VALUES (#{groupId}, #{quizRoomTitle}, #{quizRoomWorkbookId}, #{quizRoomTimeLimit}, #{quizRoomCreator} #{quizRoomMaxNum});
     </insert>
 
     <!-- 그룹 내 방 검색-->
