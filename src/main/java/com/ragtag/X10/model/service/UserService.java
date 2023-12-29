@@ -22,4 +22,6 @@ public interface UserService {
     int deleteUser(String userId);
 
     int updateExp(String userId, int exp);
+
+    int updateUserState(String userId);
 }

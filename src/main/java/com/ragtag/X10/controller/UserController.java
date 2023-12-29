@@ -57,40 +57,12 @@ public class UserController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-//    @PostMapping("/login")
-//    public ResponseEntity<Map<String, Object>> selectAll(@RequestBody User user) {
-//        Map<String, Object> result = new HashMap<>();
-//
-//        // 클라이언트에서 보내온 비밀번호를 해싱
-//        String hashedPassword = user.getUserPassword();
-//        user.setUserPassword(hashedPassword);
-//
-//        // 서비스에서 사용자 검증을 수행
-//        User loginUserInfo = userService.loginUser(user);
-//
-//        System.out.println(hashedPassword);
-//
-//        if (loginUserInfo != null) {
-//            // 로그인 성공: JWT 토큰 생성 및 반환
-//            try {
-//                String token = jwtUtil.createToken("id", loginUserInfo.getUserId());
-//                result.put("user", loginUserInfo);
-//                result.put("access-token", token);
-//                result.put("message", "success");
-//                return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
-//            } catch (UnsupportedEncodingException e) {
-//                result.put("message", "fail");
-//                return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
-//            }
-//        } else {
-//            // 로그인 실패
-//            result.put("message", "fail");
-//            return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-
     @PostMapping("/users/logout")
     public ResponseEntity<?> logout(HttpSession session) {
+        User user = (User) session.getAttribute("loggedInUser");
+
+        userService.updateUserState(user.getUserId());
+
         // 세션에서 사용자 정보 제거
         session.removeAttribute("loggedInUser");
 
@@ -108,17 +80,17 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<?> update(@RequestBody User user){
+    public ResponseEntity<?> update(@RequestBody User user) {
         int result = userService.modifyUser(user);
 
-        if(result == 0)
+        if (result == 0)
             return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping(value = "/updateProfile/{userId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateInfo(@PathVariable("userId") String userId, @RequestPart(name="userImg", required = false) MultipartFile file) {
+    public ResponseEntity<?> updateInfo(@PathVariable("userId") String userId, @RequestPart(name = "userImg", required = false) MultipartFile file) {
         try {
             User user = userService.userInfo(userId);
             System.out.println(file.getOriginalFilename());
@@ -171,3 +143,35 @@ public class UserController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }
+
+//    @PostMapping("/login")
+//    public ResponseEntity<Map<String, Object>> selectAll(@RequestBody User user) {
+//        Map<String, Object> result = new HashMap<>();
+//
+//        // 클라이언트에서 보내온 비밀번호를 해싱
+//        String hashedPassword = user.getUserPassword();
+//        user.setUserPassword(hashedPassword);
+//
+//        // 서비스에서 사용자 검증을 수행
+//        User loginUserInfo = userService.loginUser(user);
+//
+//        System.out.println(hashedPassword);
+//
+//        if (loginUserInfo != null) {
+//            // 로그인 성공: JWT 토큰 생성 및 반환
+//            try {
+//                String token = jwtUtil.createToken("id", loginUserInfo.getUserId());
+//                result.put("user", loginUserInfo);
+//                result.put("access-token", token);
+//                result.put("message", "success");
+//                return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
+//            } catch (UnsupportedEncodingException e) {
+//                result.put("message", "fail");
+//                return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
+//            }
+//        } else {
+//            // 로그인 실패
+//            result.put("message", "fail");
+//            return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }

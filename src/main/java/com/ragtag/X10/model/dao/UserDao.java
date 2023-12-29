@@ -23,4 +23,6 @@ public interface UserDao {
     int deleteUser(String userId);
 
     int updateExp(User user);
+
+    int updateUserState(String userId);
 }

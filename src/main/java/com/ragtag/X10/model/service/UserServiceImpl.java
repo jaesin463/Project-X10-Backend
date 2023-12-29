@@ -19,7 +19,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User loginUser(String userId) {
-        return userDao.checkUser(userId);
+        User user = userDao.checkUser(userId);
+        if (user != null){
+            updateUserState(userId);
+        }
+        return user;
     }
 
     @Override
@@ -58,5 +62,10 @@ public class UserServiceImpl implements UserService {
         user.setUserSolvedQuestion(user.getUserSolvedQuestion() + exp);
         user.setUserLevel(user.getUserSolvedQuestion() / 100);
         return userDao.updateExp(user);
+    }
+
+    @Override
+    public int updateUserState(String userId) {
+        return userDao.updateUserState(userId);
     }
 }

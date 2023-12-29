@@ -97,7 +97,7 @@ public class User {
     }
 
     public void setIsOnline(boolean isOnline) {
-        isOnline = isOnline;
+        this.isOnline = isOnline;
     }
 
     public boolean getIsReady() {

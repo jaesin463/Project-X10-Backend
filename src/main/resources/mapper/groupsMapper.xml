@@ -45,7 +45,7 @@
     </select>
 
     <select id="selectAllUsersInfo" resultType="User" parameterType="int">
-        SELECT User.userId, userName, userNickname, userImg, userSolvedQuestion, userLevel, isOnline
+        SELECT User.userId, userName, userNickname, userImg, userSolvedQuestion, userLevel, Groupmember.isOnline
         FROM User
         INNER JOIN Groupmember ON User.userId = Groupmember.userId
         WHERE groupId = #{groupId};
