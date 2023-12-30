@@ -11,10 +11,11 @@
 
     <!-- 유저 퀴즈 결과 조회 -->
     <select id="readUserQuestionRecord" resultType="UserQuestionRecord">
-        SELECT userId, questionId, isCorrect, recordTime,
+        SELECT userId, questionId, isCorrect, recordTime, questionType,
                @roundNumber := CASE WHEN @prevTime = recordTime THEN @roundNumber ELSE @roundNumber + 1 END AS roundNumber,
                @prevTime := recordTime AS dummy
-        FROM (SELECT qr.* FROM question q
+        FROM (SELECT qr.*, q.questionType
+              FROM question q
               Inner join UserQuestionRecord qr on q.questionId = qr.questionId
               WHERE workbookId = #{workbookId} and userId = #{userId}) qr
         CROSS JOIN (SELECT @roundNumber := 0, @prevTime := '') AS vars

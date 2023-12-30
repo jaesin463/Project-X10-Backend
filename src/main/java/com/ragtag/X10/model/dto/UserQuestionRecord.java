@@ -6,16 +6,18 @@ public class UserQuestionRecord {
     private String userId;
     private boolean isCorrect;
     private String recordTime;
+    private int questionType;
     private int roundNumber;
 
     public UserQuestionRecord() {
     }
 
-    public UserQuestionRecord(int questionId, String userId, boolean isCorrect, String recordTime, int roundNumber) {
+    public UserQuestionRecord(int questionId, String userId, boolean isCorrect, String recordTime, int questionType, int roundNumber) {
         this.questionId = questionId;
         this.userId = userId;
         this.isCorrect = isCorrect;
         this.recordTime = recordTime;
+        this.questionType = questionType;
         this.roundNumber = roundNumber;
     }
 
@@ -51,6 +53,14 @@ public class UserQuestionRecord {
         this.recordTime = recordTime;
     }
 
+    public int getQuestionType() {
+        return questionType;
+    }
+
+    public void setQuestionType(int questionType) {
+        this.questionType = questionType;
+    }
+
     public int getRoundNumber() {
         return roundNumber;
     }
@@ -66,6 +76,7 @@ public class UserQuestionRecord {
                 ", userId='" + userId + '\'' +
                 ", isCorrect=" + isCorrect +
                 ", recordTime='" + recordTime + '\'' +
+                ", questionType=" + questionType +
                 ", roundNumber=" + roundNumber +
                 '}';
     }
