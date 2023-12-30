@@ -50,7 +50,7 @@
         LEFT JOIN UserQuestionRecord uqr ON q.questionId = uqr.questionId AND uqr.userId = #{userId}
         WHERE s.groupId IN (SELECT groupId FROM GroupMember gm WHERE gm.userId = #{userId})
             AND uqr.userId IS NOT NULL -- 사용자가 푼 문제가 있는 문제만 필터링
-        GROUP BY w.workbookId
+        GROUP BY w.workbookId, w.subjectId
         ORDER BY MAX(uqr.recordTime) DESC
         LIMIT 5;
     </select>
