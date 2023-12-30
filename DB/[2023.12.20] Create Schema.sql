@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `X10`.`Workbook` (
   PRIMARY KEY (`workbookId`, `subjectId`),
   CONSTRAINT `fk_Workbook_Subject1`
     FOREIGN KEY (`subjectId`)
-    REFERENCES `X10`.`Subject` (`groupId`)
+    REFERENCES `X10`.`Subject` (`subjectId`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

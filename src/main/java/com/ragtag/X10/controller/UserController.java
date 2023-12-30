@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import javax.xml.transform.Source;
 import java.io.File;
 import java.util.*;
 
@@ -52,19 +53,18 @@ public class UserController {
         }
         // 로그인 성공
         User result = userService.userInfo(user.getUserId());
+
         // 세션에 사용자 정보 저장
         session.setAttribute("loggedInUser", result);
+
+        System.out.println(session.getAttribute("loggedInUser"));
+
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PostMapping("/users/logout")
-    public ResponseEntity<?> logout(HttpSession session) {
-        User user = (User) session.getAttribute("loggedInUser");
-
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@RequestBody User user, HttpSession session) {
         userService.updateUserState(user.getUserId());
-
-        // 세션에서 사용자 정보 제거
-        session.removeAttribute("loggedInUser");
 
         // 세션을 완전히 무효화
         session.invalidate();
