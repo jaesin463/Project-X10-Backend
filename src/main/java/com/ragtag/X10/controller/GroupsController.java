@@ -149,4 +149,24 @@ public class GroupsController {
             return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PutMapping("/leader/{groupId}/{userId}")
+    public ResponseEntity<?> changeLeader(@PathVariable("groupId") int groupId, @PathVariable("userId") String userId) {
+        int result = groupsService.changeLeader(groupId, userId);
+
+        if(result == 0)
+            return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+
+        Notice notice = new Notice();
+        notice.setNoticeType(2);
+        notice.setReceiverId(userId);
+        notice.setSendGroup(groupId);
+
+        result = noticeService.createOne(notice);
+
+        if(result == 0)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
