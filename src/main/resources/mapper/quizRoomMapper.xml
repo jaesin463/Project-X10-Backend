@@ -5,15 +5,17 @@
 <mapper namespace="com.ragtag.X10.model.dao.QuizRoomDao">
     <!-- 퀴즈방 생성-->
     <insert id="insertQuizRoom" parameterType="QuizRoom" useGeneratedKeys="true" keyProperty="quizRoomId">
-        Insert Into quizRoom (groupId, quizRoomTitle, quizRoomWorkbookId, quizRoomTimeLimit, quizRoomCreator)
-        VALUES (#{groupId}, #{quizRoomTitle}, #{quizRoomWorkbookId}, #{quizRoomTimeLimit}, #{quizRoomCreator});
+        Insert Into quizRoom (groupId, quizRoomTitle, quizRoomWorkbookId, quizRoomTimeLimit, quizRoomCreator, quizRoomMaxNum)
+        VALUES (#{groupId}, #{quizRoomTitle}, #{quizRoomWorkbookId}, #{quizRoomTimeLimit}, #{quizRoomCreator}, #{quizRoomMaxNum});
     </insert>
 
     <!-- 그룹 내 방 검색-->
     <select id="selectAll" parameterType="int" resultType="QuizRoom">
-        SELECT *
-        FROM QuizRoom
+        SELECT QR.*, COUNT(UQR.userQuizRoomId) AS quizRoomCurrentP
+        FROM QuizRoom QR
+        LEFT JOIN UserQuizRoom UQR ON QR.quizRoomId = UQR.quizRoomId
         WHERE groupId = #{groupId}
+        GROUP BY QR.quizRoomId;
     </select>
 
     <!-- 방 상세 정보 조회 -->
@@ -84,7 +86,7 @@
     </update>
 
     <select id="selectAllUser" parameterType="int">
-        SELECT User.*
+        SELECT User.*, UserQuizRoom.isReady
         FROM User
         INNER JOIN UserQuizRoom ON UserQuizRoom.userId = User.userId
         WHERE UserQuizRoom.quizRoomId = #{quizRoomId}

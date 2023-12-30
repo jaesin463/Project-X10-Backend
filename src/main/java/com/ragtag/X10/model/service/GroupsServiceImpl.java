@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GroupsServiceImpl implements GroupsService{
+public class GroupsServiceImpl implements GroupsService {
 
     @Autowired
     GroupsDao groupsDao;
@@ -19,18 +19,20 @@ public class GroupsServiceImpl implements GroupsService{
     public int insertGroups(Groups groups) {
         int result = groupsDao.insertGroups(groups);
 
+        int groupId = 0;
+
         // 만약 그룹 삽입이 성공했다면
         if (result > 0) {
-            int groupId = groups.getGroupId();
+            groupId = groups.getGroupId();
             String groupLeaderId = groupsDao.selectGroupLeader(groupId);
             groupsDao.insertGroupMember(groupId, groupLeaderId);
         }
 
-        return result;
+        return groupId;
     }
 
     @Override
-    public List<Groups> selectOne(int groupId) {
+    public Groups selectOne(int groupId) {
         return groupsDao.selectOne(groupId);
     }
 
@@ -52,6 +54,11 @@ public class GroupsServiceImpl implements GroupsService{
     @Override
     public int updateGroups(Groups groups) {
         return groupsDao.updateGroups(groups);
+    }
+
+    @Override
+    public int updateGroupsImg(Groups groups) {
+        return groupsDao.updateGroupsImg(groups);
     }
 
     @Override

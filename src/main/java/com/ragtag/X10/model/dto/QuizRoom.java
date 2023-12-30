@@ -10,11 +10,12 @@ public class QuizRoom {
     private String quizRoomCreator;
     private int quizRoomMaxNum;
     private int isStarted;
+    private int quizRoomCurrentP;
 
     public QuizRoom() {
     }
 
-    public QuizRoom(int quizRoomId, int groupId, String quizRoomTitle, int quizRoomWorkbookId, int quizRoomTimeLimit, int quizRoomSingly, String quizRoomCreator, int quizRoomMaxNum, int isStarted) {
+    public QuizRoom(int quizRoomId, int groupId, String quizRoomTitle, int quizRoomWorkbookId, int quizRoomTimeLimit, int quizRoomSingly, String quizRoomCreator, int quizRoomMaxNum, int isStarted, int quizRoomCurrentP) {
         this.quizRoomId = quizRoomId;
         this.groupId = groupId;
         this.quizRoomTitle = quizRoomTitle;
@@ -24,6 +25,7 @@ public class QuizRoom {
         this.quizRoomCreator = quizRoomCreator;
         this.quizRoomMaxNum = quizRoomMaxNum;
         this.isStarted = isStarted;
+        this.quizRoomCurrentP = quizRoomCurrentP;
     }
 
     public int getQuizRoomId() {
@@ -98,6 +100,14 @@ public class QuizRoom {
         this.isStarted = isStarted;
     }
 
+    public int getQuizRoomCurrentP() {
+        return quizRoomCurrentP;
+    }
+
+    public void setQuizRoomCurrentP(int quizRoomCurrentP) {
+        this.quizRoomCurrentP = quizRoomCurrentP;
+    }
+
     @Override
     public String toString() {
         return "QuizRoom{" +
@@ -110,6 +120,7 @@ public class QuizRoom {
                 ", quizRoomCreator='" + quizRoomCreator + '\'' +
                 ", quizRoomMaxNum=" + quizRoomMaxNum +
                 ", isStarted=" + isStarted +
+                ", quizRoomCurrentP=" + quizRoomCurrentP +
                 '}';
     }
 }

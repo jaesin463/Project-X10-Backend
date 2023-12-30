@@ -21,8 +21,8 @@ public class QuizRoomController {
 
     @PostMapping("/quizroom/create")
     public ResponseEntity<?> newQuizRoom(@RequestBody QuizRoom quizRoom) {
-        int result = quizRoomService.createRoom(quizRoom);
-        return new ResponseEntity<>(result, HttpStatus.CREATED);
+        int quizRoomId = quizRoomService.createRoom(quizRoom);
+        return new ResponseEntity<>(quizRoomId, HttpStatus.CREATED);
     }
 
     @GetMapping("/quizroom/detail/{quizRoomId}")

@@ -1,5 +1,3 @@
-
-
 -- Insert sample data into User table
 INSERT INTO `X10`.`User` (`userId`, `userPassword`, `userName`, `userNickname`, `userEmail`, `userImg`, `userSolvedQuestion`, `userLevel`) VALUES
 ('leader123', 'password', '리더1', '닉네임리더123', 'leader1@example.com', '이미지1.jpg', 100, 1),
@@ -26,6 +24,18 @@ INSERT INTO `X10`.`GroupMember` (`userId`, `groupId`, `isOnline`) VALUES
 ('person4', 2, 0),
 ('person5', 2, 0),
 ('person6', 2, 0);
+
+INSERT INTO `X10`.`QuizRoom` (`quizRoomId`, `groupId`, `quizRoomTitle`, `quizRoomWorkbookId`, `quizRoomTimeLimit`, `quizRoomSingly`, `quizRoomCreator`, `quizRoomMaxNum`, `isStarted`) VALUES
+(1, 1, 'Quiz Room 1', 1, 60, 1, 'leader123', 4, 0),
+(2, 1, 'Quiz Room 2' , 1 , 45 , 1, 'person2' , 6 , 0 )
+;
+
+
+INSERT INTO `X10`.`UserQuizRoom` (`userId`, `quizRoomId`, `startTime`, `isReady`) VALUES
+('leader123',1,null,0),
+('person2',2,null,0)
+;
+
 
 
 -- Insert sample data into Subject table
@@ -70,20 +80,3 @@ INSERT INTO `X10`.`MultipleChoice` (`multipleChoiceId`, `questionId`, `choiceCon
 (3, 7, '4', 0),
 (4, 7, '3', 0),
 (5, 7, '2', 0);
-
-
-select * from user;
-
-select * from groupmember;
-
-SELECT * FROM `Group`;
-
-select * from subject;
-
-select * from workbook;
-
-select * from question;
-
-select * from  UserQuestionRecord;
-
-
