@@ -9,7 +9,7 @@ public interface UserQuestionRecordDao {
 
     int createUserQuestionRecord(UserQuestionRecord userQuestionRecord);
 
-    List<UserQuestionRecord> readUserQuestionRecord(@Param("questionId") int questionId, @Param("userId") String userId);
+    List<UserQuestionRecord> readUserQuestionRecord(@Param("workbookId") int workbookId, @Param("userId") String userId);
 
     int updateUserQuestionRecord(UserQuestionRecord userQuestionRecord);
 

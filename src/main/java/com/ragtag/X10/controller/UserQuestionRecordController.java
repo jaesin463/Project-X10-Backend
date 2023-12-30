@@ -32,9 +32,9 @@ public class UserQuestionRecordController {
     }
 
     // 유저 퀴즈 결과 조회
-    @GetMapping("/read/{questionId}/user/{userId}")
-    public ResponseEntity<?> readUserQuestionRecord(@PathVariable("questionId") int questionId, @PathVariable("userId") String userId) {
-        List<UserQuestionRecord> userQuestionRecord = userQuestionRecordService.readUserQuestionRecord(questionId, userId);
+    @GetMapping("/read/{workbookId}/user/{userId}")
+    public ResponseEntity<?> readUserQuestionRecord(@PathVariable("workbookId") int workbookId, @PathVariable("userId") String userId) {
+        List<UserQuestionRecord> userQuestionRecord = userQuestionRecordService.readUserQuestionRecord(workbookId, userId);
         if (userQuestionRecord == null || userQuestionRecord.isEmpty())
             return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(userQuestionRecord, HttpStatus.OK);

@@ -25,8 +25,8 @@ public class UserQuestionRecordServiceImpl implements UserQuestionRecordService{
 
     // 유저 퀴즈 결과 조회
     @Override
-    public List<UserQuestionRecord> readUserQuestionRecord(int questionId, String userId) {
-        return userQuestionRecordDao.readUserQuestionRecord(questionId, userId);
+    public List<UserQuestionRecord> readUserQuestionRecord(int workbookId, String userId) {
+        return userQuestionRecordDao.readUserQuestionRecord(workbookId, userId);
     }
 
     // 유저 퀴즈 결과 수정

@@ -8,7 +8,7 @@ public interface UserQuestionRecordService {
 
     int createUserQuestionRecord(UserQuestionRecord userQuestionRecord);
 
-    List<UserQuestionRecord> readUserQuestionRecord(int questionId, String userId);
+    List<UserQuestionRecord> readUserQuestionRecord(int workbookId, String userId);
 
     int updateUserQuestionRecord(UserQuestionRecord userQuestionRecord);
 }
