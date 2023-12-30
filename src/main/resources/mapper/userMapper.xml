@@ -43,9 +43,11 @@
     </select>
 
     <select id="selectByUserId" parameterType="String" resultType="User">
-        SELECT *
+        SELECT userId, userName, userNickname, userEmail, userImg, userSolvedQuestion, userLevel
         FROM user
         WHERE userId LIKE concat('%', #{keyword}, '%')
+        OR userName LIKE concat('%', #{keyword}, '%')
+        OR userNickname LIKE concat('%', #{keyword}, '%')
     </select>
 
     <select id="selectUser" parameterType="String">
@@ -53,6 +55,7 @@
         FROM user
         WHERE userId = #{userId}
     </select>
+
 
     <delete id="deleteUser" parameterType="String">
         DELETE FROM user
