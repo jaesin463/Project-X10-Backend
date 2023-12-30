@@ -42,9 +42,12 @@
         AS isLeader
     </select>
 
-    <select id="selectByUserId" parameterType="String" resultType="User">
-        SELECT userId, userName, userNickname, userEmail, userImg, userSolvedQuestion, userLevel
-        FROM user
+    <select id="selectByUserId" resultType="User">
+        SELECT *
+        FROM ( SELECT u.*
+               FROM User u
+               LEFT JOIN GroupMember gm ON u.userId = gm.userId AND gm.groupId = #{groupId}
+               WHERE gm.userId IS NULL ) as u
         WHERE userId LIKE concat('%', #{keyword}, '%')
         OR userName LIKE concat('%', #{keyword}, '%')
         OR userNickname LIKE concat('%', #{keyword}, '%')
