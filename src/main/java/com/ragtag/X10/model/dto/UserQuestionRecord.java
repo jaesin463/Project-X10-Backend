@@ -6,15 +6,17 @@ public class UserQuestionRecord {
     private String userId;
     private boolean isCorrect;
     private String recordTime;
+    private int roundNumber;
 
     public UserQuestionRecord() {
     }
 
-    public UserQuestionRecord(int questionId, String userId, boolean isCorrect, String recordTime) {
+    public UserQuestionRecord(int questionId, String userId, boolean isCorrect, String recordTime, int roundNumber) {
         this.questionId = questionId;
         this.userId = userId;
         this.isCorrect = isCorrect;
         this.recordTime = recordTime;
+        this.roundNumber = roundNumber;
     }
 
     public int getQuestionId() {
@@ -49,6 +51,14 @@ public class UserQuestionRecord {
         this.recordTime = recordTime;
     }
 
+    public int getRoundNumber() {
+        return roundNumber;
+    }
+
+    public void setRoundNumber(int roundNumber) {
+        this.roundNumber = roundNumber;
+    }
+
     @Override
     public String toString() {
         return "UserQuestionRecord{" +
@@ -56,6 +66,7 @@ public class UserQuestionRecord {
                 ", userId='" + userId + '\'' +
                 ", isCorrect=" + isCorrect +
                 ", recordTime='" + recordTime + '\'' +
+                ", roundNumber=" + roundNumber +
                 '}';
     }
 }

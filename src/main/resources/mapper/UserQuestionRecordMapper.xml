@@ -11,9 +11,14 @@
 
     <!-- 유저 퀴즈 결과 조회 -->
     <select id="readUserQuestionRecord" resultType="UserQuestionRecord">
-        SELECT *
-        FROM UserQuestionRecord
-        WHERE questionId = #{questionId} AND userId = #{userId}
+        SELECT userId, questionId, isCorrect, recordTime,
+               @roundNumber := CASE WHEN @prevTime = recordTime THEN @roundNumber ELSE @roundNumber + 1 END AS roundNumber,
+               @prevTime := recordTime AS dummy
+        FROM (SELECT qr.* FROM question q
+              Inner join UserQuestionRecord qr on q.questionId = qr.questionId
+              WHERE workbookId = #{workbookId} and userId = #{userId}) qr
+        CROSS JOIN (SELECT @roundNumber := 0, @prevTime := '') AS vars
+        ORDER BY userId, recordTime
     </select>
 
     <!--  유저 퀴즈 결과 수정  -->
@@ -22,6 +27,4 @@
         SET isCorrect = #{isCorrect}, recordTime = now()
         WHERE questionId = #{questionId} AND userId = #{userId}
     </update>
-
-
 </mapper>
