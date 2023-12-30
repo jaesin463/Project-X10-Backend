@@ -15,7 +15,7 @@ public interface UserService {
 
     boolean isLeader(String userId);
 
-    List<User> searchUser(String keyword);
+    List<User> searchUser(String keyword, int groupId);
 
     User userInfo(String userId);
 

@@ -246,11 +246,12 @@ ENGINE = InnoDB;
 -- Table `X10`.`UserQuestionRecord`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `X10`.`UserQuestionRecord` (
+  `recordId` int NOT NULL AUTO_INCREMENT,
   `questionId` INT NOT NULL,
   `userId` VARCHAR(45) NOT NULL,
   `isCorrect` TINYINT NOT NULL COMMENT '0 : 틀림\n1 : 맞음',
   `recordTime` DATETIME NOT NULL,
-  PRIMARY KEY (`questionId`, `userId`),
+  PRIMARY KEY (`recordId`),
   INDEX `fk_User_has_Question_Question1_idx` (`questionId` ASC) VISIBLE,
   INDEX `fk_User_has_Question_User1_idx` (`userId` ASC) VISIBLE,
   CONSTRAINT `fk_User_has_Question_User1`
@@ -261,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `X10`.`UserQuestionRecord` (
   CONSTRAINT `fk_User_has_Question_Question1`
     FOREIGN KEY (`questionId`)
     REFERENCES `X10`.`Question` (`questionId`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
