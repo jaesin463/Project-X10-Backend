@@ -32,4 +32,6 @@ public interface GroupsDao {
     int insertGroup(@Param("groupId") int groupId, @Param("userId") String userId);
 
     int quitGroup(@Param("groupId") int groupId, @Param("userId") String userId); // 그룹원 탈퇴
+
+    int updateLeader(@Param("groupId") int groupId, @Param("userId") String userId);
 }

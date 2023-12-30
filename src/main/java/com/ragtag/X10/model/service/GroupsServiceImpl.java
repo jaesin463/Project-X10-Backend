@@ -75,4 +75,9 @@ public class GroupsServiceImpl implements GroupsService {
     public int quitGroup(int groupId, String userId) {
         return groupsDao.quitGroup(groupId, userId);
     }
+
+    @Override
+    public int changeLeader(int groupId, String userId) {
+        return groupsDao.updateLeader(groupId, userId);
+    }
 }

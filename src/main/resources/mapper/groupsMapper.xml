@@ -83,4 +83,10 @@
         WHERE userId = #{userId} AND groupId = #{groupId};
     </delete>
 
+    <!-- 그룹장 변경 -->
+    <update id="updateLeader">
+        UPDATE `Group`
+        SET groupLeaderId = #{userId}
+        WHERE groupId = #{groupId}
+    </update>
 </mapper>

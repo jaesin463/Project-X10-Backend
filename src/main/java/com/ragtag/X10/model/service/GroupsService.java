@@ -28,4 +28,6 @@ public interface GroupsService {
 
     int quitGroup(int groupId, String userId); // 그룹원 탈퇴
 
+    int changeLeader(int groupId, String userId);
+
 }
