@@ -6,7 +6,7 @@
     <!-- 유저 퀴즈 결과 입력 -->
     <insert id="createUserQuestionRecord" parameterType="UserQuestionRecord">
         INSERT INTO UserQuestionRecord (`questionId`, `userId`, `isCorrect`, `recordTime`)
-        VALUES (#{questionId}, #{userId}, #{isCorrect}, now())
+        VALUES (#{questionId}, #{userId}, #{isCorrect}, #{recordTime})
     </insert>
 
     <!-- 유저 퀴즈 결과 조회 -->
