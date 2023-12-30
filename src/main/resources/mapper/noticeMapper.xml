@@ -5,8 +5,8 @@
 <mapper namespace="com.ragtag.X10.model.dao.NoticeDao">
     <!-- 알림 생성 -->
     <insert id="insertNotice" parameterType="Notice">
-        INSERT INTO Notice (receiverId, noticeType, noticeContent)
-        VALUES (#{receiverId}, #{noticeType}, #{noticeContent});
+        INSERT INTO Notice (receiverId, noticeType, sendGroup)
+        VALUES (#{receiverId}, #{noticeType}, #{sendGroup});
     </insert>
 
     <!-- 전체 알림 조회 -->

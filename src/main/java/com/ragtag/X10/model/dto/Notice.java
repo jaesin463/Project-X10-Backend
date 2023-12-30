@@ -4,18 +4,18 @@ public class Notice {
     private int noticeId;
     private String receiverId;
     private int noticeType;
-    private String noticeContent;
+    private int sendGroup;
     private int noticeCheck;
     private String noticeDate;
 
     public Notice() {
     }
 
-    public Notice(int noticeId, String receiverId, int noticeType, String noticeContent, int noticeCheck, String noticeDate) {
+    public Notice(int noticeId, String receiverId, int noticeType, int sendGroup, int noticeCheck, String noticeDate) {
         this.noticeId = noticeId;
         this.receiverId = receiverId;
         this.noticeType = noticeType;
-        this.noticeContent = noticeContent;
+        this.sendGroup = sendGroup;
         this.noticeCheck = noticeCheck;
         this.noticeDate = noticeDate;
     }
@@ -44,12 +44,12 @@ public class Notice {
         this.noticeType = noticeType;
     }
 
-    public String getNoticeContent() {
-        return noticeContent;
+    public int getSendGroup() {
+        return sendGroup;
     }
 
-    public void setNoticeContent(String noticeContent) {
-        this.noticeContent = noticeContent;
+    public void setSendGroup(int sendGroup) {
+        this.sendGroup = sendGroup;
     }
 
     public int getNoticeCheck() {
@@ -74,7 +74,7 @@ public class Notice {
                 "noticeId=" + noticeId +
                 ", receiverId='" + receiverId + '\'' +
                 ", noticeType=" + noticeType +
-                ", noticeContent='" + noticeContent + '\'' +
+                ", sendGroup='" + sendGroup + '\'' +
                 ", noticeCheck=" + noticeCheck +
                 ", noticeDate='" + noticeDate + '\'' +
                 '}';

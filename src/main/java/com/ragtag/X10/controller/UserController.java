@@ -121,8 +121,8 @@ public class UserController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @GetMapping("/search/{keyword}")
-    public ResponseEntity<List<User>> searchUser(@PathVariable("keyword") String keyword) {
+    @GetMapping("/search/{keyword}/{groupId}")
+    public ResponseEntity<List<User>> searchUser(@PathVariable("keyword") String keyword, @PathVariable("groupId") int groupId) {
         List<User> result = userService.searchUser(keyword);
 
         if (result == null || result.isEmpty())

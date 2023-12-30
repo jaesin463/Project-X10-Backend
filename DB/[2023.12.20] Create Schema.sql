@@ -139,8 +139,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `X10`.`Notice` (
   `noticeId` INT NOT NULL AUTO_INCREMENT,
   `receiverId` VARCHAR(45) NOT NULL,
+  `sendGroup` int NOT NULL,
   `noticeType` INT NOT NULL,
-  `noticeContent` VARCHAR(200) NOT NULL,
   `noticeCheck` TINYINT NULL DEFAULT 0,
   `noticeDate` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`noticeId`, `receiverId`),

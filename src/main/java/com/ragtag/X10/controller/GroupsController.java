@@ -117,22 +117,24 @@ public class GroupsController {
     // 그룹원 초대
     @PostMapping("{groupId}/invite/{userId}")
     public ResponseEntity<?> inviteUser(@PathVariable("groupId") int groupId, @PathVariable("userId") String userId) {
-        int result = groupsService.inviteUser(groupId, userId);
-
-        if (result == 0)
-            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-
-        Groups group = groupsService.selectOne(groupId);
-
-        String inviteM = group.getGroupName() + "에 초대되었습니다.";
         Notice notice = new Notice();
         notice.setReceiverId(userId);
-        notice.setNoticeContent(inviteM);
+        notice.setSendGroup(groupId);
         notice.setNoticeType(1);
 
-        result = noticeService.createOne(notice);
+        int result = noticeService.createOne(notice);
 
-        if(result == 0)
+        if (result == 0)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("{groupId}/regist/{userId}")
+    public ResponseEntity<?> registGroup(@PathVariable("groupId") int groupId, @PathVariable("userId") String userId) {
+        int result = groupsService.registGroup(groupId, userId);
+
+        if (result == 0)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
         return new ResponseEntity<>(HttpStatus.OK);

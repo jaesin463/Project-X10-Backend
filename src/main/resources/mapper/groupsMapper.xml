@@ -71,10 +71,10 @@
         DELETE FROM `Groups` WHERE `groupId` = #{groupId};
     </delete>
 
-    <!--  그룹원 초대  -->
-    <insert id="inviteUser">
+    <!--  그룹 가입  -->
+    <insert id="insertGroup">
         INSERT INTO GroupMember (userId, groupId, isOnline)
-        VALUES (#{userId}, #{groupId}, 0);
+        VALUES (#{userId}, #{groupId}, 1);
     </insert>
 
     <!--  그룹원 탈퇴  -->
