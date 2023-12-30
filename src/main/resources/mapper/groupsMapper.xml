@@ -48,7 +48,8 @@
         SELECT User.userId, userName, userNickname, userImg, userSolvedQuestion, userLevel, Groupmember.isOnline
         FROM User
         INNER JOIN Groupmember ON User.userId = Groupmember.userId
-        WHERE groupId = #{groupId};
+        WHERE groupId = #{groupId}
+        ORDER BY User.userSolvedQuestion DESC;
     </select>
 
     <!--  그룹 수정  -->

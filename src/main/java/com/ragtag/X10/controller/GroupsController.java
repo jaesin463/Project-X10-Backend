@@ -2,8 +2,10 @@ package com.ragtag.X10.controller;
 
 import com.ragtag.X10.model.dto.GroupMember;
 import com.ragtag.X10.model.dto.Groups;
+import com.ragtag.X10.model.dto.Notice;
 import com.ragtag.X10.model.dto.User;
 import com.ragtag.X10.model.service.GroupsService;
+import com.ragtag.X10.model.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -23,6 +25,9 @@ public class GroupsController {
 
     @Autowired
     private GroupsService groupsService;
+
+    @Autowired
+    private NoticeService noticeService;
 
     @Autowired
     ResourceLoader resLoader;
@@ -77,7 +82,7 @@ public class GroupsController {
     }
 
     @PostMapping(value = "/updateProfile/{groupId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateInfo(@PathVariable("groupId") int groupId, @RequestPart(name="groupImg", required = false) MultipartFile file) {
+    public ResponseEntity<?> updateInfo(@PathVariable("groupId") int groupId, @RequestPart(name = "groupImg", required = false) MultipartFile file) {
         try {
             Groups group = groupsService.selectOne(groupId);
 
@@ -116,6 +121,20 @@ public class GroupsController {
 
         if (result == 0)
             return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+
+        Groups group = groupsService.selectOne(groupId);
+
+        String inviteM = group.getGroupName() + "에 초대되었습니다.";
+        Notice notice = new Notice();
+        notice.setReceiverId(userId);
+        notice.setNoticeContent(inviteM);
+        notice.setNoticeType(1);
+
+        result = noticeService.createOne(notice);
+
+        if(result == 0)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

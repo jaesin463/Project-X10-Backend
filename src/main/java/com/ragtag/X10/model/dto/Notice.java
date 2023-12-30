@@ -4,7 +4,6 @@ public class Notice {
     private int noticeId;
     private String receiverId;
     private int noticeType;
-    private String noticeTitle;
     private String noticeContent;
     private int noticeCheck;
     private String noticeDate;
@@ -12,11 +11,10 @@ public class Notice {
     public Notice() {
     }
 
-    public Notice(int noticeId, String receiverId, int noticeType, String noticeTitle, String noticeContent, int noticeCheck, String noticeDate) {
+    public Notice(int noticeId, String receiverId, int noticeType, String noticeContent, int noticeCheck, String noticeDate) {
         this.noticeId = noticeId;
         this.receiverId = receiverId;
         this.noticeType = noticeType;
-        this.noticeTitle = noticeTitle;
         this.noticeContent = noticeContent;
         this.noticeCheck = noticeCheck;
         this.noticeDate = noticeDate;
@@ -44,14 +42,6 @@ public class Notice {
 
     public void setNoticeType(int noticeType) {
         this.noticeType = noticeType;
-    }
-
-    public String getNoticeTitle() {
-        return noticeTitle;
-    }
-
-    public void setNoticeTitle(String noticeTitle) {
-        this.noticeTitle = noticeTitle;
     }
 
     public String getNoticeContent() {
@@ -84,9 +74,8 @@ public class Notice {
                 "noticeId=" + noticeId +
                 ", receiverId='" + receiverId + '\'' +
                 ", noticeType=" + noticeType +
-                ", noticeTitle='" + noticeTitle + '\'' +
                 ", noticeContent='" + noticeContent + '\'' +
-                ", noticeCheck='" + noticeCheck + '\'' +
+                ", noticeCheck=" + noticeCheck +
                 ", noticeDate='" + noticeDate + '\'' +
                 '}';
     }
