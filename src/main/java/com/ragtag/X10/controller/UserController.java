@@ -123,7 +123,7 @@ public class UserController {
 
     @GetMapping("/search/{keyword}/{groupId}")
     public ResponseEntity<List<User>> searchUser(@PathVariable("keyword") String keyword, @PathVariable("groupId") int groupId) {
-        List<User> result = userService.searchUser(keyword);
+        List<User> result = userService.searchUser(keyword,groupId);
 
         if (result == null || result.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -2,6 +2,7 @@ package com.ragtag.X10.model.dao;
 
 import com.ragtag.X10.model.dto.TodoList;
 import com.ragtag.X10.model.dto.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface UserDao {
 
     boolean checkLeader(String userId);
 
-    List<User> selectByUserId(String keyword);
+    List<User> selectByUserId(@Param("keyword") String keyword, @Param("groupId") int groupId);
 
     User selectUser(String userId);
 

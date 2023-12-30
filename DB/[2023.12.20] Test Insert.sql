@@ -16,7 +16,7 @@ INSERT INTO `X10`.`Group` (`groupLeaderId`, `groupName`, `groupDetail`) VALUES
 ('leader456', '그룹 2', '그룹 2에 대한 설명');
 
 INSERT INTO `X10`.`GroupMember` (`userId`, `groupId`, `isOnline`) VALUES 
-('leader123', 1, 0),
+('leader123', 1, 1),
 ('leader456', 2, 0),
 ('person1', 1, 0),
 ('person2', 1, 0),
@@ -27,16 +27,11 @@ INSERT INTO `X10`.`GroupMember` (`userId`, `groupId`, `isOnline`) VALUES
 
 INSERT INTO `X10`.`QuizRoom` (`quizRoomId`, `groupId`, `quizRoomTitle`, `quizRoomWorkbookId`, `quizRoomTimeLimit`, `quizRoomSingly`, `quizRoomCreator`, `quizRoomMaxNum`, `isStarted`) VALUES
 (1, 1, 'Quiz Room 1', 1, 60, 1, 'leader123', 4, 0),
-(2, 1, 'Quiz Room 2' , 1 , 45 , 1, 'person2' , 6 , 0 )
-;
-
+(2, 1, 'Quiz Room 2' , 1 , 45 , 1, 'person2' , 6 , 0 );
 
 INSERT INTO `X10`.`UserQuizRoom` (`userId`, `quizRoomId`, `startTime`, `isReady`) VALUES
 ('leader123',1,null,0),
-('person2',2,null,0)
-;
-
-
+('person2',2,null,0);
 
 -- Insert sample data into Subject table
 INSERT INTO `X10`.`Subject` (`groupId`, `subjectTitle`, `subjectContent`) VALUES
@@ -64,10 +59,16 @@ INSERT INTO `X10`.`UserQuestionRecord` (`questionId`, `userId`, `isCorrect`, `re
 VALUES
   (4, 'leader123', 1, '2023-01-01 10:30:00'),
   (2, 'leader123', 0, '2023-01-02 15:45:00'),
+  (1, 'person1', 1, '2023-01-03 09:20:00'),
+  (2, 'person1', 1, '2023-01-03 09:20:00'),
+  (3, 'person1', 0, '2023-01-03 09:20:00'),
   (4, 'person1', 1, '2023-01-03 09:20:00'),
+  (1, 'person1', 0, '2023-01-03 10:20:00'),
+  (2, 'person1', 1, '2023-01-03 10:20:00'),
+  (3, 'person1', 1, '2023-01-03 10:20:00'),
+  (4, 'person1', 0, '2023-01-03 10:20:00'),
   (3, 'person2', 1, '2023-01-04 14:10:00'),
   (2, 'person3', 0, '2023-01-05 11:00:00');
-
 
 -- 객관식 문제 테스트
 -- Insert sample data into Question table
