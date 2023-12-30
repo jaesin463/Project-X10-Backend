@@ -43,7 +43,8 @@ public class NoticeController {
     public ResponseEntity<?> checkNotice(@RequestBody Notice notice) {
         int result = 0;
         // 그룹 초대 알림
-        if (notice.getNoticeType() == 1)
+        // noticeCheck는 0이면 거절, 1이면 수락
+        if (notice.getNoticeType() == 1 && notice.getNoticeCheck() == 1)
             result = groupsService.registGroup(notice.getSendGroup(), notice.getReceiverId());
 
         noticeService.checkNotice(notice.getNoticeId());
