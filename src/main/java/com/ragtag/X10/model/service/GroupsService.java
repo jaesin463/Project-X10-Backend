@@ -24,7 +24,7 @@ public interface GroupsService {
 
     int deleteGroups(int groupId); // 그룹 삭제
 
-    int inviteUser(int groupId, String userId); // 그룹원 초대
+    int registGroup(int groupId, String userId);
 
     int quitGroup(int groupId, String userId); // 그룹원 탈퇴
 

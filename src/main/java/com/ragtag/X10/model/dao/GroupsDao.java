@@ -29,7 +29,7 @@ public interface GroupsDao {
 
     int deleteGroups(int groupId); // 그룹 삭제
 
-    int inviteUser(@Param("groupId") int groupId, @Param("userId") String userId); // 그룹원 초대
+    int insertGroup(@Param("groupId") int groupId, @Param("userId") String userId);
 
     int quitGroup(@Param("groupId") int groupId, @Param("userId") String userId); // 그룹원 탈퇴
 }

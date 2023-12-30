@@ -67,8 +67,8 @@ public class GroupsServiceImpl implements GroupsService {
     }
 
     @Override
-    public int inviteUser(int groupId, String userId) {
-        return groupsDao.inviteUser(groupId, userId);
+    public int registGroup(int groupId, String userId) {
+        return groupsDao.insertGroup(groupId, userId);
     }
 
     @Override
